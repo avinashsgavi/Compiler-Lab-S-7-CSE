@@ -1,2 +1,76 @@
 LEX
 lex is a program that generates lexical analyzer. The lexical analyzer is a program that transforms an input stream into a sequence of tokens. It reads the input stream and produces the source code as output through implementing the lexical analyzer in the C program.
+
+lex source
+program lex.l     -----------> lex compiler -------------> lex.yy.c
+
+
+lex.yy.c      -----------> C compiler -------------> a.out
+
+
+input stream        -----------> a.out -------------> sequence of tokens
+
+
+The Lex source program lex.l is written in the lex Language.
+The Lex compiler runs the lex.l program and produces a C program lex.yy.c
+Finally C compiler runs the lex.yy.c program and produces an object program a.out
+a.out is lexical analyzer that transforms an input stream into a sequence of tokens
+
+
+LEX FILE FORMAT 
+A lex program is separated into three sections by %% delimiters.
+The format of Lex source is as follows:
+
+{definitions}
+%%
+{rules}
+%%
+{user subroutines}
+
+DEFINITION SECTION
+
+Definitions section contains definitions and include code
+In the definition section , text is enclosed in " %{%}" brackets. Anything written in this brackets is copied directly to the file lex.yy.c
+
+Definitions are like macros and have the following form:
+
+name translation
+digit [0-9]
+number {digit} {digit}*
+included code is all code included between %{and %}
+%{
+  float number;
+int count = 0;
+%}
+
+
+RULE SECTION
+
+The rules section contains a series of rules in the form:pattern action
+pattern must be unintended and action begin on the same line in {} brackets.
+Actions are usually c-code lines that are copied 
+The rule section is enclosed in "%% %%"
+
+%%
+pattern    action
+%%
+
+
+USER CODE SECTION
+
+This section contain c statements and additional functions
+we can also compile these functions separately and load with the lexical analyzer
+
+
+HOW TO RUN THE LEX PROGRAM
+
+To run the programs
+To run the program, it should be first saved with the extension.l
+Run the below commands on terminal in order to run the program file.
+
+Step 1:flex filename.l or lex filename.lex depending on the extension file is saved with
+step 2:gcc lex.yy.c
+step 3:./a.out {for windows a.exe}
+step 4:provide the input to program in case it is required
+Note:Press ctrl+c or use some rule to stop taking inputs from the user
+
