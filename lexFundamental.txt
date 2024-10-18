@@ -1,0 +1,2 @@
+LEX
+lex is a program that generates lexical analyzer. The lexical analyzer is a program that transforms an input stream into a sequence of tokens. It reads the input stream and produces the source code as output through implementing the lexical analyzer in the C program.
